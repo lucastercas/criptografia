@@ -23,12 +23,13 @@ def get_options()
 end
 
 def main()
+  puts "\n===== Transposicao ====="
   options = get_options()
 
   txt_claro = File.read(options[:input_file])
 
-  print "Texto Claro: #{txt_claro}"
-  print "Chave: #{options[:key ]}"
+  puts "Texto Claro: #{txt_claro}"
+  puts "Chave: #{options[:key ]}"
 
   cifrar(txt_claro, options[:key])
 end
