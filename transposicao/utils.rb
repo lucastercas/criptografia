@@ -22,17 +22,25 @@ def print_matrix(matrix)
 end
 
 def text_to_matrix(plaintxt, key)
+  puts "=== Text To Matrix ==="
   matrix = []
-
   line = 0
-  matrix[line] = []
 
+  matrix[line] = []
   for i in 0..plaintxt.size-1 do
     if i % key.size == 0 && i != 0 then
       line += 1
       matrix[line] = []
     end
     matrix[line].append(plaintxt[i])
+  end
+  
+
+  # Adicionar o numero de letras q faltam nos espacos
+  # vazios da matriz
+  while (i+1) % key.size != 0 do
+    matrix[line].append("x")
+    i += 1
   end
 
   return matrix

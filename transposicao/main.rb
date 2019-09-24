@@ -39,7 +39,7 @@ def main()
   puts "=== Texto Cifrado ==="
   puts "#{ciphertext} -> #{ciphertext.size}"
 
-  deciphered_text = decipher(ciphertext, key)
+  #deciphered_text = decipher(ciphertext, key)
 end
 
 main()
