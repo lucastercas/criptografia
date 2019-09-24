@@ -1,50 +1,57 @@
 require "./utils"
 
-def text_to_matrix(clear_txt, key)
+def text_to_matrix(plaintxt, key)
   matrix = []
 
   line = 0
   matrix[line] = key.chars
 
-  for i in 0..clear_txt.size-1 do
+  for i in 0..plaintxt.size-1 do
     if i % key.size == 0 then
       line += 1
       matrix[line] = []
     end
-    matrix[line].append(clear_txt[i])
+    matrix[line].append(plaintxt[i])
   end
 
   return matrix
 end
 
-def sort_matrix(matrix)
+# Fazer a transposicao da matrix, levando em conta a ordem alfabetica 
+# da primeira linha
+def transform_matrix(matrix)
   sorted_key = matrix[0].sort
-  sorted_matrix = Array.new(matrix.size){Array.new()}
+  sorted_matrix = Array.new(matrix[0].size){Array.new()}
 
-  line = 0
-  sorted_matrix[line] = sorted_key
-
-  col_idx = 0
+  line_idx = 0
   sorted_key.each do |char|
     col = matrix[0].index(char)
-    puts "#{char} => #{col} => #{col_idx}"
-
-    for i in 1..matrix.size-1 do
-      sorted_matrix[i].append(matrix[i][col])
+    for i in 0..matrix.size-1 do
+      sorted_matrix[line_idx].append(matrix[i][col])
     end
-    col_idx += 1
 
+    line_idx += 1
   end
 
   return sorted_matrix
 end
 
-def cifrar(clear_txt, key)
-  clear_txt = clear_txt.gsub(/\s+/, "")
+def cifrar(plaintxt, key)
+  plaintxt = plaintxt.gsub(/\s+/, "")
 
-  matrix = text_to_matrix(clear_txt, key)
+  puts "#{plaintxt} -> #{plaintxt.size}"
+
+  matrix = text_to_matrix(plaintxt, key)
   print_matrix(matrix)
 
-  sorted_matrix = sort_matrix(matrix)
+  sorted_matrix = transform_matrix(matrix)
   print_matrix(sorted_matrix)
+
+  result = ""
+  sorted_matrix.each do |line|
+    line.each do |char|
+      result += char
+    end
+  end
+  return result
 end

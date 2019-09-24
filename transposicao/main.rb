@@ -26,12 +26,17 @@ def main()
   puts "\n===== Transposicao ====="
   options = get_options()
 
-  txt_claro = File.read(options[:input_file])
+  plaintxt = File.read(options[:input_file])
 
-  puts "Texto Claro: #{txt_claro}"
-  puts "Chave: #{options[:key ]}"
+  key = options[:key]
 
-  cifrar(txt_claro, options[:key])
+  puts "Texto Claro: #{plaintxt}"
+  puts "Chave: #{key}"
+
+  cifertext = cifrar(plaintxt, key)
+
+  puts "#{cifertext} -> #{cifertext.size}"
+  decifrar(cifertext, key)
 end
 
 main()

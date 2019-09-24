@@ -6,7 +6,7 @@ def print_matrix(matrix)
     if i == 0 then
       print "      "
       for j in 0..matrix[0].size-1 do
-        print "#{j} " 
+        print(j < 10 ? " #{j}  " : " #{j} ")
       end
       puts
     end
@@ -18,7 +18,7 @@ def print_matrix(matrix)
       end
       # Se for a primeira linha, imprimir a "chave" destacada com |
       # Se nao for, imprimir matrix[i][j] normalmente
-      print(i == 0 ? "|#{matrix[i][j]}" : " #{matrix[i][j]}")
+      print(i == 0 ? "| #{matrix[i][j]} " : "  #{matrix[i][j]} ")
     end
     puts
   end
