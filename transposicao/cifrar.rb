@@ -1,57 +1,59 @@
 require "./utils"
 
-def text_to_matrix(plaintxt, key)
-  matrix = []
+# Fazer a transposicao da matrix,
+# levando em conta a ordem alfabetica da primeira linha
+def transform_matrix(matrix, key)
+  sorted_key = key.sort
 
-  line = 0
-  matrix[line] = key.chars
-
-  for i in 0..plaintxt.size-1 do
-    if i % key.size == 0 then
-      line += 1
-      matrix[line] = []
-    end
-    matrix[line].append(plaintxt[i])
-  end
-
-  return matrix
-end
-
-# Fazer a transposicao da matrix, levando em conta a ordem alfabetica 
-# da primeira linha
-def transform_matrix(matrix)
-  sorted_key = matrix[0].sort
-  sorted_matrix = Array.new(matrix[0].size){Array.new()}
+  result_matrix = Array.new(matrix[0].size){Array.new()}
 
   line_idx = 0
+
   sorted_key.each do |char|
-    col = matrix[0].index(char)
+    col = key.index(char)
     for i in 0..matrix.size-1 do
-      sorted_matrix[line_idx].append(matrix[i][col])
+      result_matrix[line_idx].append(matrix[i][col])
+      # Caso a chave tenha letras repetidas, anular a coluna
+      # que ja virou linha
+      matrix[i][col] = -1
     end
 
     line_idx += 1
   end
 
-  return sorted_matrix
+  return result_matrix
 end
 
-def cifrar(plaintxt, key)
+def transposition(plaintxt, key)
+  # Remover todos os espacos:
   plaintxt = plaintxt.gsub(/\s+/, "")
-
-  puts "#{plaintxt} -> #{plaintxt.size}"
+  # Transformar chave de string pra array de char:
+  key = key.chars
 
   matrix = text_to_matrix(plaintxt, key)
-  print_matrix(matrix)
+  puts "-- Matriz --"
+  print_matrix matrix
 
-  sorted_matrix = transform_matrix(matrix)
-  print_matrix(sorted_matrix)
+  result_matrix = transform_matrix(matrix, key)
+  puts "-- Matriz Resultante --"
+  print_matrix result_matrix
 
-  result = ""
-  sorted_matrix.each do |line|
-    line.each do |char|
-      result += char
-    end
-  end
-  return result
+  return matrix_to_text(result_matrix)
 end
+
+def cipher(plaintxt, key)
+  first_stage = transposition(plaintxt, key)
+  puts "=== Primeiro Estagio ==="
+  puts "#{first_stage}"
+
+  second_stage = transposition(first_stage, key)
+  puts "=== Segundo Estagio ==="
+  puts "#{second_stage}"
+
+  third_stage = transposition(second_stage, key)
+  puts "=== Terceiro Estagio ==="
+  puts "#{third_stage}"
+
+  return third_stage
+end
+

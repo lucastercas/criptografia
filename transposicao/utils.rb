@@ -1,4 +1,3 @@
-
 def print_matrix(matrix)
   for i in 0..matrix.size-1 do
 
@@ -16,10 +15,35 @@ def print_matrix(matrix)
       if j == 0 then
         print((i < 10 ? "#{i} " : "#{i}") + " ->")
       end
-      # Se for a primeira linha, imprimir a "chave" destacada com |
-      # Se nao for, imprimir matrix[i][j] normalmente
-      print(i == 0 ? "| #{matrix[i][j]} " : "  #{matrix[i][j]} ")
+      print("  #{matrix[i][j]} ")
     end
     puts
   end
+end
+
+def text_to_matrix(plaintxt, key)
+  matrix = []
+
+  line = 0
+  matrix[line] = []
+
+  for i in 0..plaintxt.size-1 do
+    if i % key.size == 0 && i != 0 then
+      line += 1
+      matrix[line] = []
+    end
+    matrix[line].append(plaintxt[i])
+  end
+
+  return matrix
+end
+
+def matrix_to_text(matrix)
+  result = ""
+  matrix.each do |line|
+    line.each do |char|
+      result += char
+    end
+  end
+  return result
 end

@@ -30,13 +30,17 @@ def main()
 
   key = options[:key]
 
-  puts "Texto Claro: #{plaintxt}"
-  puts "Chave: #{key}"
+  puts "=== Texto Claro ==="
+  puts "#{plaintxt} -> #{plaintxt.size}"
+  puts "=== Chave ==="
+  puts "#{key}"
 
-  cifertext = cifrar(plaintxt, key)
+  ciphertext = cipher(plaintxt, key)
+  puts "=== Texto Cifrado ==="
+  puts "#{ciphertext} -> #{ciphertext.size}"
 
-  puts "#{cifertext} -> #{cifertext.size}"
-  decifrar(cifertext, key)
+  deciphered_text = decipher(ciphertext, key)
 end
 
 main()
+
