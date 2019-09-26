@@ -36,10 +36,11 @@ def main()
   puts "#{key}"
 
   ciphertext = cipher(plaintxt, key)
+  puts
   puts "=== Texto Cifrado ==="
   puts "#{ciphertext} -> #{ciphertext.size}"
 
-  #deciphered_text = decipher(ciphertext, key)
+  deciphered_text = decipher(ciphertext, key)
 end
 
 main()

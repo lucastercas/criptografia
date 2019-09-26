@@ -42,14 +42,14 @@ def cipher(plaintxt, key)
   first_stage = transposition(plaintxt, key)
   puts "Resultado: #{first_stage}"
 
-  puts "=== Segundo Estagio ==="
-  second_stage = transposition(first_stage, key)
-  puts "Resultado: #{second_stage}"
+  #puts "=== Segundo Estagio ==="
+  #second_stage = transposition(first_stage, key)
+  #puts "Resultado: #{second_stage}"
 
-  puts "=== Terceiro Estagio ==="
-  third_stage = transposition(second_stage, key)
-  puts "Resultado: #{third_stage}"
+  #puts "=== Terceiro Estagio ==="
+  #third_stage = transposition(second_stage, key)
+  #puts "Resultado: #{third_stage}"
 
-  return third_stage
+  return first_stage
 end
 
