@@ -1,15 +1,15 @@
 #ifndef UTILS_H
 #define UTILS_H
 #include <iostream>
-#include <cstdio>
+#include <fstream>
 #include <vector>
 #include <map>
 #include <string>
+#include <cstdio>
+#include <cstdlib>
+#include <ctime>
 
-vector<std::string> rotors = {
-  "ekmflgdqvzntowyhxuspaibrcj",
-  "ajdksiruxblhwtmcqgznpyfvoe",
-  "bdfhjlcprtxvznyeiwgakmusqo"
-};
+void writeFile(std::string filePath, std::string content);
+std::string readFile(std::string filePath);
 
 #endif

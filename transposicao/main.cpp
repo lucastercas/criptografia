@@ -1,6 +1,3 @@
-#include <iostream>
-#include <fstream>
-
 #include "cifrar.h"
 #include "decifrar.h"
 #include "util.h"
