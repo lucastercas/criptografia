@@ -7,10 +7,10 @@ OBJECTS=$(subst .cpp,.o,$(SOURCES))
 all: rotacao
 
 rotacao: $(OBJECTS)
-	$(CC) -o transposicao $(OBJECTS)
+	$(CC) -o rotacao $(OBJECTS)
 
 clean:
 	$(RM) $(OBJECTS)
 
 distclean: clean
-	$(RM) transposicao
+	$(RM) rotacao

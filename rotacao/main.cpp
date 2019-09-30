@@ -3,7 +3,7 @@
 #include "decifrar.h"
 
 int main() {
-  printf("=== Maquina de Rotação ===");
+  printf("\n=== Maquina de Rotação ===\n");
 
   // Inicializar os rotores
   std::vector<std::string> rotors = {
@@ -23,6 +23,8 @@ int main() {
   std::cout << plainText << std::endl;
 
   std::string cipherText = cipher(plainText, rotors);
+  printf("Plain Text: %s\n", plainText.c_str());
+  printf("Cipher Text: %s\n", cipherText.c_str());
 
   return 0;
 }
