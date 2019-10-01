@@ -2,40 +2,29 @@
 #include "decifrar.h"
 #include "util.h"
 
-std::string readFile(std::string filePath) {
-  std::ifstream file;
-  file.open(filePath);
-
-  std::string content;
-  std::string line;
-  if (file.is_open()) {
-    while (getline(file, line)) {
-      content += line;
-    }
-    file.close();
-  }
-  return content;
-}
-
 int main() {
   std::cout << "=== Cifra de Transposição - Linha x Coluna ===\n";
 
   std::string key;
   std::cout << "Digite a chave: ";
-  key = "lucasde";
-  //cin >> key;
+  cin >> key;
 
   std::string filePath;
   std::cout << "Digite o local do texto claro: ";
-  filePath = "output/texto_claro.txt";
-  //cin >> filePath;
+  cin >> filePath;
   std::string plainText = readFile(filePath);
 
   std::string cipheredText = cipher(plainText, key);
-  std::cout << cipheredText;
+
+  std::string cipheredTextLocation = "textos/texto-cifrado.txt";
+  writeFile(cipheredTextLocation, decipheredText);
+  printf("Texto cifrado guardado em %s\n", cipheredTextLocation.s_str());
 
   std::string decipheredText = decipher(cipheredText, key);
-  std::cout << decipheredText;
+
+  std::string decipheredTextLocation = "textos/texto-cifrado.txt";
+  writeFile("textos/texto-decifrado.txt", decipheredText);
+  printf("Texto decifrado guardado em %s\n", decipheredTextLocation.s_str());
 
   return 0;
 }

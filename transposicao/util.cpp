@@ -50,7 +50,9 @@ Matrix textToMatrix(std::string text, int nCol) {
   return matrix;
 }
 
-/* Transforms a matrix into a string */
+/**
+ * Transforma uma matriz de chars em string
+ */
 std::string matrixToText(Matrix matrix) {
   std::string text = "";
   for (int i = 0; i < matrix.size(); i++) {
@@ -59,4 +61,29 @@ std::string matrixToText(Matrix matrix) {
     }
   }
   return text;
+}
+
+/**
+ * Retorna o conteudo do arquivo em filepath
+ */
+std::string readFile(std::string filePath) {
+  std::ifstream file;
+  file.open(filePath);
+
+  std::string content;
+  std::string line;
+  if (file.is_open()) {
+    while (getline(file, line)) {
+      content += line;
+    }
+    file.close();
+  }
+  return content;
+}
+
+/**
+ * Escreve {content} no arquivo em {filePath}
+ */
+bool writeFile(std::string filePath, std::string content) {
+  return true;
 }

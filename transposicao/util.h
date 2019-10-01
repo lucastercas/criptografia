@@ -1,5 +1,6 @@
 #ifndef UTIL_H
 #define UTIL_H
+
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -13,5 +14,7 @@ std::string removeSpace(std::string);
 void printMatrix(Matrix);
 Matrix textToMatrix(std::string, int);
 std::string matrixToText(Matrix);
+bool writeFile(std::string, std::string);
+std::string readFile(std::string);
 
 #endif
