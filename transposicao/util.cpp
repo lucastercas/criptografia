@@ -1,6 +1,6 @@
 #include "util.h"
 
-/* Receve uma string e retorn a string sem espaços */
+/* Recebe uma string e retorn a string sem espaços */
 std::string removeSpace(std::string plainText) {
   std::string result = "";
 
