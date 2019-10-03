@@ -1,36 +1,13 @@
 #include "cifrar.h"
 
-int getRotorChar(int charIdx, int rotorPosition, std::string rotor) {
-  int rotorIdx = (charIdx - 97) + rotorPosition;
-  char rotorChar = rotor[rotorIdx%26];
-#ifdef _DEBUG_
-  printf("%c(%d)[%d]", charIdx, charIdx, charIdx-97);
-  printf(" -> %c(%d)[%d]\n", rotorChar, rotorChar, rotorIdx);
-#endif
-  return rotorChar;
-}
-
-std::string cipher(std::string plainText, std::vector<std::string> rotors) {
+std::string cipher(std::string plainText, std::vector<std::string> rotors, std::vector<int> rotorPositions) {
   std::string cipherText = "";
-  /*
-  int leftRotorPosition = rand() % 26;
-  int middleRotorPosition = rand() % 26;
-  int rightRotorPosition = rand() % 26;
-  */
-
-  // Inicializar a posição dos rotores aleatoriamente e salvar a posição inicial
-  // deles pra usar na decifragem
-  int rightRotorPosition = 3;
-  int initialRightRotorPosition = rightRotorPosition;
-
-  int middleRotorPosition = 3;
-  int initialMiddleRotorPosition = middleRotorPosition;
-
-  int leftRotorPosition = 3;
-  int initialLeftRotorPosition = leftRotorPosition;
 
   for (char c: plainText) {
     char lowerCase = tolower(c);
+  int rightRotorPosition = rotorPositions[0];
+  int middleRotorPosition = rotorPositions[1];
+  int leftRotorPosition = rotorPositions[2];
 
 #ifdef _DEBUG_
     printf("Primeiro Rotor: ");

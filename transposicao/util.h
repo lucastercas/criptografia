@@ -12,8 +12,10 @@ typedef std::vector<std::vector<char> > Matrix;
 
 std::string removeSpace(std::string);
 void printMatrix(Matrix);
+
 Matrix textToMatrix(std::string, int);
 std::string matrixToText(Matrix);
+
 bool writeFile(std::string, std::string);
 std::string readFile(std::string);
 

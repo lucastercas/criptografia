@@ -11,7 +11,8 @@
 
 //#define _DEBUG_ 0
 
-void writeFile(std::string filePath, std::string content);
-std::string readFile(std::string filePath);
+void writeFile(std::string, std::string);
+std::string readFile(std::string);
+int getRotorChar(int, int, std::string);
 
 #endif

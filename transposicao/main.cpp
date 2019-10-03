@@ -7,24 +7,25 @@ int main() {
 
   std::string key;
   std::cout << "Digite a chave: ";
-  cin >> key;
+  std::cin >> key;
 
+  /* Ler e guardar o texto claro */
   std::string filePath;
   std::cout << "Digite o local do texto claro: ";
-  cin >> filePath;
+  std::cin >> filePath;
   std::string plainText = readFile(filePath);
 
-  std::string cipheredText = cipher(plainText, key);
+  /* Texto cifrado */
+  std::string cipherText = cipher(plainText, key);
+  std::string cipherTextLocation = "textos/texto-cifrado.txt";
+  writeFile(cipherTextLocation, cipherText);
+  printf("Texto cifrado guardado em %s\n", cipherTextLocation.c_str());
 
-  std::string cipheredTextLocation = "textos/texto-cifrado.txt";
-  writeFile(cipheredTextLocation, decipheredText);
-  printf("Texto cifrado guardado em %s\n", cipheredTextLocation.s_str());
-
-  std::string decipheredText = decipher(cipheredText, key);
-
-  std::string decipheredTextLocation = "textos/texto-cifrado.txt";
+  /* Texto decifrado */
+  std::string decipheredText = decipher(cipherText, key);
+  std::string decipheredTextLocation = "textos/texto-decifrado.txt";
   writeFile("textos/texto-decifrado.txt", decipheredText);
-  printf("Texto decifrado guardado em %s\n", decipheredTextLocation.s_str());
+  printf("Texto decifrado guardado em %s\n", decipheredTextLocation.c_str());
 
   return 0;
 }
