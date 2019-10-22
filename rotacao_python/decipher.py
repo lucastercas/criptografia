@@ -4,26 +4,18 @@ def getRotorOutput(char, rotor, position):
     return alphabet[rotor_idx]
 
 
-def decipher(cipher_text, rotors, initial_rotors_position):
+def decipher(cipher_text, rotors, rotors_positions):
     deciphered_text = ""
     for char in cipher_text:
         if char is ' ':
             continue
+        rotor_input = char
+        for rotor_idx in reversed(range(len(rotors))):
+          rotor_input = getRotorOutput(
+            rotor_input,
+            rotors[rotor_idx],
+            rotors_positions[rotor_idx],
+        )
 
-        first_rotor_output = getRotorOutput(
-            char,
-            rotors['right-rotor'],
-            initial_rotors_position['right-rotor']
-        )
-        second_rotor_output = getRotorOutput(
-            first_rotor_output,
-            rotors['middle-rotor'],
-            initial_rotors_position['middle-rotor']
-        )
-        third_rotor_output = getRotorOutput(
-            second_rotor_output,
-            rotors['left-rotor'],
-            initial_rotors_position['left-rotor']
-        )
-        deciphered_text += third_rotor_output
+        deciphered_text += rotor_input
     return deciphered_text
