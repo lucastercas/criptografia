@@ -12,6 +12,7 @@ def cipher(plain_text, rotors, rotors_positions):
             continue
 
         rotor_input = char
+        # Para cada rotor:
         for rotor_idx in range(len(rotors)):
             rotor_input = getRotorOutput(
                 rotor_input,
