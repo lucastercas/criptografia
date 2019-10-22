@@ -32,12 +32,12 @@ def cipher(plain_text, rotors, rotors_position):
             rotors_position["right-rotor"],
         )
 
-        print("        First  Second  Third")
-        print(
-            f"Input:  {char}\t{first_rotor_output}\t{second_rotor_output}")
-        print(
-            f"Output: {first_rotor_output}\t{second_rotor_output}\t{third_rotor_output}")
-        print("\n")
+        # print("        First  Second  Third")
+        # print(
+        #     f"Input:  {char}\t{first_rotor_output}\t{second_rotor_output}")
+        # print(
+        #     f"Output: {first_rotor_output}\t{second_rotor_output}\t{third_rotor_output}")
+        # print("\n")
         cipher_text += third_rotor_output
 
     return cipher_text
