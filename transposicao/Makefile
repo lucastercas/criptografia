@@ -7,7 +7,7 @@ OBJECTS=$(subst .cpp,.o,$(SOURCES))
 all: transposicao
 
 transposicao: $(OBJECTS)
-	$(CC) -o transposicao $(OBJECTS)
+	$(CC) -o transposicao.exe $(OBJECTS)
 
 clean:
 	$(RM) $(OBJECTS)

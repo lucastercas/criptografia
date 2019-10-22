@@ -17,14 +17,14 @@ int main() {
 
   /* Texto cifrado */
   std::string cipherText = cipher(plainText, key);
-  std::string cipherTextLocation = "textos/texto-cifrado.txt";
+  std::string cipherTextLocation = "textos/texto_cifrado.txt";
   writeFile(cipherTextLocation, cipherText);
   printf("Texto cifrado guardado em %s\n", cipherTextLocation.c_str());
 
   /* Texto decifrado */
   std::string decipheredText = decipher(cipherText, key);
-  std::string decipheredTextLocation = "textos/texto-decifrado.txt";
-  writeFile("textos/texto-decifrado.txt", decipheredText);
+  std::string decipheredTextLocation = "textos/texto_decifrado.txt";
+  writeFile(decipheredTextLocation, decipheredText);
   printf("Texto decifrado guardado em %s\n", decipheredTextLocation.c_str());
 
   return 0;

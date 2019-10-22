@@ -1,0 +1,50 @@
+#!/usr/bin/env python
+from cipher import cipher
+from decipher import decipher
+
+_DEBUG_ = True
+
+def readFile(file_path):
+    f = open(file_path, 'r')
+    return f.read()
+
+
+def save_file(file_path, content):
+    f = open(file_path, 'w')
+    return f.write(content)
+
+
+def main():
+    print("=== Maquina de Rotação ===")
+
+    rotors = {
+        "left-rotor": "ekmflgdqvzntowyhxuspaibrcj",
+        "middle-rotor": "ajdksiruxblhwtmcqgznpyfvoe",
+        "right-rotor": "bdfhjlcprtxvznyeiwgakmusqo",
+    }
+
+    initial_rotors_positions = {
+        "left-rotor": 1,
+        "middle-rotor": 1,
+        "right-rotor": 1,
+    }
+
+    # Ler o texto claro
+    plain_text_path = "./textos/texto-claro.txt"
+    plain_text = readFile(plain_text_path)
+
+    # Cifrar o texto claro
+    cipher_text = cipher(plain_text, rotors, initial_rotors_positions)
+    print(f"==> Cipher Text: {cipher_text}")
+
+    # Salvar o texto cifrado
+    cipher_text_path = "./textos/texto-cifrado.txt"
+    save_file(cipher_text_path, cipher_text)
+
+    # Decifrar o texto cifrado
+    deciphered_text = decipher(cipher_text, rotors, initial_rotors_positions)
+    # Salvar o texto decifrado
+    deciphered_text_path = "./textos/texto-decifrado.txt"
+    save_file(deciphered_text_path, deciphered_text)
+
+main()

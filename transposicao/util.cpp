@@ -85,5 +85,9 @@ std::string readFile(std::string filePath) {
  * Escreve {content} no arquivo em {filePath}
  */
 bool writeFile(std::string filePath, std::string content) {
+  std::ofstream file;
+  file.open(filePath);
+  file << content;
+  file.close();
   return true;
 }

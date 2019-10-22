@@ -15,9 +15,9 @@ int main() {
   // Inicializar semente do random
   srand(time(NULL));
   std::vector<int> rotorPositions;
-  rotorPositions.push_back(3); // Rotor direito 
-  rotorPositions.push_back(3); // Rotor do meio
-  rotorPositions.push_back(3); // Rotor esquerdo
+  rotorPositions.push_back(rand()%26); // Rotor direito 
+  rotorPositions.push_back(rand()%26); // Rotor do meio
+  rotorPositions.push_back(rand()%26); // Rotor esquerdo
 
   /* Ler e guardar o texto claro */
   std::string filePath;
@@ -27,13 +27,13 @@ int main() {
 
   /* Texto cifrado */
   std::string cipherText = cipher(plainText, rotors, rotorPositions);
-  std::string cipherTextLocation = "textos/texto-cifrado.txt";
+  std::string cipherTextLocation = "textos/texto_cifrado.txt";
   writeFile(cipherTextLocation, cipherText);
   printf("Texto cifrado guardado em %s\n", cipherTextLocation.c_str());
 
   /* Texto decifrado */
   std::string decipheredText = decipher(cipherText, rotors, rotorPositions);
-  std::string decipheredTextLocation = "textos/texto-decifrado.txt";
+  std::string decipheredTextLocation = "textos/texto_decifrado.txt";
   writeFile("textos/texto-decifrado.txt", decipheredText);
   printf("Texto decifrado guardado em %s\n", decipheredTextLocation.c_str());
 

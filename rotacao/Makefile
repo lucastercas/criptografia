@@ -7,10 +7,10 @@ OBJECTS=$(subst .cpp,.o,$(SOURCES))
 all: rotacao
 
 rotacao: $(OBJECTS)
-	$(CC) -o rotacao $(OBJECTS)
+	$(CC) -o rotacao.exe $(OBJECTS)
 
 clean:
 	$(RM) $(OBJECTS)
 
 distclean: clean
-	$(RM) rotacao
+	$(RM) rotacao.exe

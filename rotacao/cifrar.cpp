@@ -1,3 +1,4 @@
+#include "utils.h"
 #include "cifrar.h"
 
 std::string cipher(std::string plainText, std::vector<std::string> rotors, std::vector<int> rotorPositions) {
