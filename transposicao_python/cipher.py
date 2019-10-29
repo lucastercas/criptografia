@@ -46,7 +46,7 @@ def transposition(matrix, key):
 def matrixToText(matrix):
     result = ""
     for line in matrix:
-      result += ''.join(line)
+        result += ''.join(line)
     return result
 
 
@@ -61,7 +61,7 @@ def cipher(plain_text, key):
     first_stage_transposition = transposition(first_stage_matrix, key)
     print(f"--> Transposition: {first_stage_transposition}")
     first_stage_text = matrixToText(first_stage_transposition)
-    print(f"--> Text: {first_stage_text}")
 
-
+    cipher_text = first_stage_text
+    print(f"--> Cipher Text: {cipher_text}")
     return cipher_text

@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import argparse
+
 from cipher import cipher
 from decipher import decipher
 
@@ -16,6 +18,8 @@ def writeFile(file_path, content):
 
 def main():
     print("\n#===== Transposição =====#")
+
+    parser = argparse.ArgumentParser(description='Cifra de Transposição')
 
     key = "loucura"
 
