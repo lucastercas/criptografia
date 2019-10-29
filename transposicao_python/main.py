@@ -19,10 +19,10 @@ def writeFile(file_path, content):
 def main():
     print("\n#===== Transposição =====#")
 
-    parser = argparse.ArgumentParser(description='Cifra de Transposição')
+    # parser = argparse.ArgumentParser(description='Cifra de Transposição')
+    # parser.add_argument('')
 
     key = "loucura"
-
     plain_text_path = "./textos/texto-claro.txt"
     plain_text = readFile(plain_text_path)
     cipher_text = cipher(plain_text, key)

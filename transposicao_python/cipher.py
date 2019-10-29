@@ -26,7 +26,6 @@ def textToMatrix(text, key_len):
 def transposition(matrix, key):
     key_matrix = list(key)
     sorted_key_matrix = sorted(key)
-    print(f"Sorted Key: {sorted_key_matrix}")
 
     result = []
     line_index = 0
@@ -53,15 +52,15 @@ def matrixToText(matrix):
 def cipher(plain_text, key):
     cipher_text = ""
     normalized_text = normalizeText(plain_text)
-    print(f"--> Normalized Text: {normalized_text}")
-    print(f"--> Key: {key}")
 
     first_stage_matrix = textToMatrix(normalized_text, len(key))
-    print(f"\n--> First Stage: {first_stage_matrix}")
     first_stage_transposition = transposition(first_stage_matrix, key)
-    print(f"--> Transposition: {first_stage_transposition}")
     first_stage_text = matrixToText(first_stage_transposition)
 
-    cipher_text = first_stage_text
+    second_stage_matrix = textToMatrix(first_stage_text, len(key))
+    second_stage_transposition = transposition(second_stage_matrix, key)
+    second_stage_text = matrixToText(second_stage_transposition)
+
+    cipher_text = second_stage_text
     print(f"--> Cipher Text: {cipher_text}")
     return cipher_text

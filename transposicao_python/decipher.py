@@ -33,8 +33,11 @@ def decipher(cipher_text, key):
 
     first_stage_matrix = textToMatrix(cipher_text, len(key))
     first_stage_transposition = transposition(first_stage_matrix, key)
-    print(first_stage_matrix)
-    print(first_stage_transposition)
+
+    second_stage_matrix = textToMatrix(first_stage_transposition, len(key))
+    second_stage_transposition = transposition(second_stage_matrix, key)
+
+    deciphered_text = second_stage_transposition
 
     print(f"--> Deciphered Text: {deciphered_text}")
     return deciphered_text
