@@ -16,7 +16,7 @@ def save_file(file_path, content):
 
 
 def main():
-    print("=== Maquina de Rotação ===")
+    print("\n#===== Maquina de Rotação =====#")
 
     rotors = [
         "ekmflgdqvzntowyhxuspaibrcj",
@@ -24,7 +24,7 @@ def main():
         "bdfhjlcprtxvznyeiwgakmusqo",
     ]
 
-    initial_rotors_positions = [1, 1, 1]
+    initial_rotors_positions = [4, 10, 4]
 
     # Ler o texto claro
     plain_text_path = "./textos/texto-claro.txt"

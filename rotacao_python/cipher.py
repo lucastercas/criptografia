@@ -1,6 +1,6 @@
 def getRotorOutput(input, rotor, position):
     alphabet = "abcdefghijklmnopqrstuvwxyz"
-    input_idx = alphabet.index(input)
+    input_idx = ((alphabet.index(input) + position ) % 26)
     return rotor[input_idx]
 
 
