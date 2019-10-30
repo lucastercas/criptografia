@@ -22,6 +22,7 @@ def decipher(cipher_text, rotors, rotors_positions):
                 rotors[rotor_idx],
                 rotors_positions[rotor_idx],
             )
-
+            rotors_positions[rotor_idx] = (rotors_positions[rotor_idx]+1)%26
         deciphered_text += rotor_input
+        
     return deciphered_text

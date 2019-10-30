@@ -19,6 +19,7 @@ def cipher(plain_text, rotors, rotors_positions):
                 rotors[rotor_idx],
                 rotors_positions[rotor_idx],
             )
+            rotors_positions[rotor_idx] = (rotors_positions[rotor_idx]+1)%26
         cipher_text += rotor_input
 
     return cipher_text

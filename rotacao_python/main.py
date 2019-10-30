@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+import copy
+
 from cipher import cipher
 from decipher import decipher
 
@@ -24,7 +26,7 @@ def main():
         "bdfhjlcprtxvznyeiwgakmusqo",
     ]
 
-    initial_rotors_positions = [4, 10, 4]
+    rotors_position = [3, 10, 4]
 
     # Ler o texto claro
     plain_text_path = "./textos/texto-claro.txt"
@@ -32,7 +34,7 @@ def main():
     print(f"==> Plain Text: {plain_text}")
 
     # Cifrar o texto claro
-    cipher_text = cipher(plain_text, rotors, initial_rotors_positions)
+    cipher_text = cipher(plain_text, rotors, copy.copy(rotors_position))
     print(f"==> Cipher Text: {cipher_text}")
 
     # Salvar o texto cifrado
@@ -40,7 +42,7 @@ def main():
     save_file(cipher_text_path, cipher_text)
 
     # Decifrar o texto cifrado
-    deciphered_text = decipher(cipher_text, rotors, initial_rotors_positions)
+    deciphered_text = decipher(cipher_text, rotors, copy.copy(rotors_position))
     print(f"==> Deciphered Text: {deciphered_text}")
 
     # Salvar o texto decifrado
