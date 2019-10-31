@@ -58,7 +58,7 @@ def main():
     deciphered_text_path = '/'.join(deciphered_text_path) + \
         "/texto-decifrado.txt"
     save_file(deciphered_text_path, deciphered_text)
-    print(f"=> Texto decifrado salvo em {cipher_text_path}")
+    print(f"=> Texto decifrado salvo em {deciphered_text_path}")
 
 
 main()

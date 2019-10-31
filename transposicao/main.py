@@ -6,6 +6,7 @@ from decipher import decipher
 
 
 def readFile(file_path):
+    # Caso o arquivo do texto claro n exista
     try:
         f = open(file_path, 'r')
         return f.read()
@@ -46,7 +47,7 @@ def main():
     deciphered_text_path = '/'.join(deciphered_text_path) + \
         "/texto-decifrado.txt"
     writeFile(deciphered_text_path, deciphered_text)
-    print(f"=> Texto decifrado salvo em {cipher_text_path}")
+    print(f"=> Texto decifrado salvo em {deciphered_text_path}")
 
 
 main()

@@ -18,12 +18,16 @@ def textToMatrix(cipher_text, n):
 def transposition(matrix, key):
     result = ""
     sorted_key = sorted(key)
+    line_size = len(matrix[0])
 
-    for i in range(len(matrix[0])):
+    # Para cada linha da matrix
+    for i in range(line_size):
+         # Copiar a chave, para n mudar a chave original, pq ela vai ter q ser usada no loop
         copy_key = copy.copy(sorted_key)
+
         for char in key:
-            key_index = copy_key.index(char)
-            copy_key[key_index] = None
+            key_index = copy_key.index(char) 
+            copy_key[key_index] = None # Invalidar o indice, caso tenha letras repetidas na chave
             result += matrix[key_index][i]
 
     return result
