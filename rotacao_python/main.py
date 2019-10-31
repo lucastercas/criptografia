@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 import copy
+import random
+import sys
 
 from cipher import cipher
 from decipher import decipher
@@ -8,8 +10,12 @@ _DEBUG_ = True
 
 
 def readFile(file_path):
-    f = open(file_path, 'r')
-    return f.read()
+    try:
+        f = open(file_path, 'r')
+        return f.read()
+    except IOError:
+        print(f"Arquivo {file_path} não existe")
+        sys.exit()
 
 
 def save_file(file_path, content):
@@ -20,34 +26,40 @@ def save_file(file_path, content):
 def main():
     print("\n#===== Maquina de Rotação =====#")
 
+    # Rotores que serão usados
     rotors = [
         "ekmflgdqvzntowyhxuspaibrcj",
         "ajdksiruxblhwtmcqgznpyfvoe",
         "bdfhjlcprtxvznyeiwgakmusqo",
     ]
 
-    rotors_position = [3, 10, 4]
+    # Posição inicial dos rotores
+    rotors_position = [
+        random.randint(0, 25),
+        random.randint(0, 25),
+        random.randint(0, 25)
+    ]
 
     # Ler o texto claro
-    plain_text_path = "./textos/texto-claro.txt"
+    plain_text_path = input("Digite o local do texto claro: ")
     plain_text = readFile(plain_text_path)
-    print(f"==> Plain Text: {plain_text}")
 
     # Cifrar o texto claro
     cipher_text = cipher(plain_text, rotors, copy.copy(rotors_position))
-    print(f"==> Cipher Text: {cipher_text}")
-
     # Salvar o texto cifrado
-    cipher_text_path = "./textos/texto-cifrado.txt"
+    cipher_text_path = plain_text_path.split('/')[:-1]
+    cipher_text_path = '/'.join(cipher_text_path) + "/texto-cifrado.txt"
     save_file(cipher_text_path, cipher_text)
+    print(f"=> Texto cifrado salvo em {cipher_text_path}")
 
     # Decifrar o texto cifrado
     deciphered_text = decipher(cipher_text, rotors, copy.copy(rotors_position))
-    print(f"==> Deciphered Text: {deciphered_text}")
-
     # Salvar o texto decifrado
-    deciphered_text_path = "./textos/texto-decifrado.txt"
+    deciphered_text_path = plain_text_path.split('/')[:-1]
+    deciphered_text_path = '/'.join(deciphered_text_path) + \
+        "/texto-decifrado.txt"
     save_file(deciphered_text_path, deciphered_text)
+    print(f"=> Texto decifrado salvo em {cipher_text_path}")
 
 
 main()
