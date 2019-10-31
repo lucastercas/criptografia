@@ -1,3 +1,4 @@
+# Remover espaços em branco e mudar letras maiusculas pra minusculas
 def normalizeText(text):
     output = text.lower()
     output = output.replace(" ", "")
@@ -39,28 +40,17 @@ def transposition(matrix, key):
         line_index += 1
         result.append([])
 
-    return result
+    output = ""
+    for line in result:
+        output += ''.join(line)
+    return output
 
 
-def matrixToText(matrix):
-    result = ""
-    for line in matrix:
-        result += ''.join(line)
-    return result
+def cipher(plain_text, key, n_stages):
+    text = normalizeText(plain_text)
 
+    for _ in range(n_stages):
+        matrix = textToMatrix(text, len(key))
+        text = transposition(matrix, key)
 
-def cipher(plain_text, key):
-    cipher_text = ""
-    normalized_text = normalizeText(plain_text)
-
-    first_stage_matrix = textToMatrix(normalized_text, len(key))
-    first_stage_transposition = transposition(first_stage_matrix, key)
-    first_stage_text = matrixToText(first_stage_transposition)
-
-    second_stage_matrix = textToMatrix(first_stage_text, len(key))
-    second_stage_transposition = transposition(second_stage_matrix, key)
-    second_stage_text = matrixToText(second_stage_transposition)
-
-    cipher_text = second_stage_text
-    print(f"--> Cipher Text: {cipher_text}")
-    return cipher_text
+    return text

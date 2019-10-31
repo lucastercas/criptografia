@@ -1,5 +1,6 @@
 import copy
 
+
 def textToMatrix(cipher_text, n):
     output = []
     line_idx = 0
@@ -19,25 +20,19 @@ def transposition(matrix, key):
     sorted_key = sorted(key)
 
     for i in range(len(matrix[0])):
-      copy_key = copy.copy(sorted_key)
-      for char in key:
-          key_index = copy_key.index(char)
-          copy_key[key_index] = None
-          result += matrix[key_index][i]
+        copy_key = copy.copy(sorted_key)
+        for char in key:
+            key_index = copy_key.index(char)
+            copy_key[key_index] = None
+            result += matrix[key_index][i]
 
     return result
 
 
-def decipher(cipher_text, key):
-    deciphered_text = ""
+def decipher(cipher_text, key, n_stages):
+    text = cipher_text
+    for _ in range(n_stages):
+        matrix = textToMatrix(text, len(key))
+        text = transposition(matrix, key)
 
-    first_stage_matrix = textToMatrix(cipher_text, len(key))
-    first_stage_transposition = transposition(first_stage_matrix, key)
-
-    second_stage_matrix = textToMatrix(first_stage_transposition, len(key))
-    second_stage_transposition = transposition(second_stage_matrix, key)
-
-    deciphered_text = second_stage_transposition
-
-    print(f"--> Deciphered Text: {deciphered_text}")
-    return deciphered_text
+    return text

@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 
-import argparse
-
+import sys
 from cipher import cipher
 from decipher import decipher
 
 
 def readFile(file_path):
-    f = open(file_path, 'r')
-    return f.read()
+    try:
+        f = open(file_path, 'r')
+        return f.read()
+    except IOError:
+        sys.exit()
 
 
 def writeFile(file_path, content):
@@ -19,20 +21,32 @@ def writeFile(file_path, content):
 def main():
     print("\n#===== Transposição =====#")
 
-    # parser = argparse.ArgumentParser(description='Cifra de Transposição')
-    # parser.add_argument('')
+    key = input("Digite a chave: ")
 
-    key = "loucura"
-    plain_text_path = "./textos/texto-claro.txt"
+    # Numero de estagios do algoritmo
+    n_stages = 3
+    # Ler o texto claro
+    plain_text_path = input("Digite o local do texto claro: ")
     plain_text = readFile(plain_text_path)
-    cipher_text = cipher(plain_text, key)
 
-    cipher_text_path = "./textos/texto-cifrado.txt"
+    # Cifrar o texto claro
+    cipher_text = cipher(plain_text, key,  n_stages)
+
+    # Salvar o texto cifrado
+    cipher_text_path = plain_text_path.split('/')[:-1]
+    cipher_text_path = '/'.join(cipher_text_path) + "/texto-cifrado.txt"
     writeFile(cipher_text_path, cipher_text)
+    print(f"=> Texto cifrado salvo em {cipher_text_path}")
 
-    deciphered_text = decipher(cipher_text, key)
-    deciphered_text_path = "./textos/texto-decifrado.txt"
+    # Decifrar o texto cifrado
+    deciphered_text = decipher(cipher_text, key, n_stages)
+
+    # Salvar o texto decifrado
+    deciphered_text_path = plain_text_path.split('/')[:-1]
+    deciphered_text_path = '/'.join(deciphered_text_path) + \
+        "/texto-decifrado.txt"
     writeFile(deciphered_text_path, deciphered_text)
+    print(f"=> Texto decifrado salvo em {cipher_text_path}")
 
 
 main()

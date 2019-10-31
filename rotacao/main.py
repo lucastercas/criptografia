@@ -6,9 +6,6 @@ import sys
 from cipher import cipher
 from decipher import decipher
 
-_DEBUG_ = True
-
-
 def readFile(file_path):
     try:
         f = open(file_path, 'r')
@@ -41,11 +38,12 @@ def main():
     ]
 
     # Ler o texto claro
-    plain_text_path = input("Digite o local do texto claro: ")
+    plain_text_path = input("Digite o local do textoc claro: ")
     plain_text = readFile(plain_text_path)
 
     # Cifrar o texto claro
     cipher_text = cipher(plain_text, rotors, copy.copy(rotors_position))
+
     # Salvar o texto cifrado
     cipher_text_path = plain_text_path.split('/')[:-1]
     cipher_text_path = '/'.join(cipher_text_path) + "/texto-cifrado.txt"
@@ -54,6 +52,7 @@ def main():
 
     # Decifrar o texto cifrado
     deciphered_text = decipher(cipher_text, rotors, copy.copy(rotors_position))
+    
     # Salvar o texto decifrado
     deciphered_text_path = plain_text_path.split('/')[:-1]
     deciphered_text_path = '/'.join(deciphered_text_path) + \
