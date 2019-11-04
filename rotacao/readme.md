@@ -1,8 +1,10 @@
 # Cifra de Máquina de Rotação
 
-## Descrição:
+* Aluno: Lucas de Macedo Terças
 
-Esse algoritmo consistede uma máquina de rotação com 3 rotores, onde a
+## Objetivo:
+
+Esse algoritmo consiste de uma máquina de rotação com 3 rotores, onde a
 posição inicial dos rotores é inicializada aleatoriamente.
 
 ### Rotores Utilizados:
@@ -10,6 +12,8 @@ posição inicial dos rotores é inicializada aleatoriamente.
 1. ekmflgdqvzntowyhxuspaibrcj
 2. ajdksiruxblhwtmcqgznpyfvoe
 3. bdfhjlcprtxvznyeiwgakmusqo
+
+O objetivo é crifrar um texto usando o algoritmo
 
 ## Cifragem:
 
@@ -46,6 +50,20 @@ else:
 ```
 
 ## Decifragem:
+A decifragem é simples que nem a cifragem, onde cada letra do texto cifrado
+passa pelos rotores, porém em ordem contrária, ou seja, primeiro o
+terceiro rotor, depois o segundo e enfim o primeiro.
+
+1. Calcular a posição da letra no rotor
+2. Subtrair essa posição pela posição do rotor
+3. Calcular o modulo por 26
+4. Pegar a letra no alfabeto que pertence a esse indice
+```python
+  alphabet = "abcdefghijklmnopqrstuvwxyz"
+  output_index = rotor.index(input)
+  output_index = (ouput_index - rotor_position) % 26
+  output = alphabet[output_index]
+```
 
 ## Exemplo de Uso:
 
