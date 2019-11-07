@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import random
+from utils import readFile, writeFile
 
 
 # Maior Divisor Comum de x e y
@@ -69,21 +70,48 @@ def createKeys(p, q):
 
     d = calculateD(e, phi)
 
-    return ((e, n), (d, n))
+    return f"{e}\n{n}", f"{d}\n{n}"
 
 
-def decipher(private_key, ciphertext):
-    key, n = private_key
-    return True
+def decipher(ciphertext):
+    private_key_path = "./private-key.txt"
+    with open(private_key_path) as file:
+        key = file.readline()
+        n = file.readline()
+    lines = ciphertext.split("\n")
+    n_lines = len(lines)
+    deciphered = ""
+    for i in range(n_lines-1):
+        line = lines[i]
+        aux = int(line) ** int(key)
+        c = aux % int(n)
+        deciphered += chr(c)
+
+    return deciphered
 
 
 def main():
     print("\n#===== Decifragem RSA =====#")
 
-    # Criar chaves publicas e privadas
-    public_key, private_key = createKeys(8293, 9973)
-    print(f"Public Key: {public_key}")
-    print(f"Private Key: {private_key}")
+    option = None
+    while True:
+        print("1 - Gerar Chaves")
+        print("2 - Decifrar Texto")
+        option = input("Escolha: ")
+        if (option == "1"):
+            # Criar chaves publicas e privadas
+            print("#=== Gerando Chaves ===#")
+            public_key, private_key = createKeys(151, 139)
+
+            writeFile("./public-key.txt", public_key)
+            writeFile("./private-key.txt", private_key)
+            break
+        elif(option == "2"):
+            cipher_text_path = "./textos/texto-cifrado.txt"
+            cipher_text = readFile(cipher_text_path)
+            deciphered_text = decipher(cipher_text)
+            writeFile("./textos/texto-decifrado.txt", deciphered_text)
+            break
 
 
 main()

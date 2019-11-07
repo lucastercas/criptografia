@@ -1,28 +1,32 @@
 #!/usr/bin/env python
 
 import sys
+from utils import readFile, writeFile
 
 
-def readFile(file_path):
-    try:
-        f = open(file_path, 'r')
-        return f.read()
-    except IOError:
-        print(f"Arquivo {file_path} não existe")
-        sys.exit()
+def cipher(plaintext):
+    public_key_path = "./public-key.txt"
+    with open(public_key_path) as file:
+        key = file.readline()
+        n = file.readline()
 
+    cipher_text = ""
+    for char in plaintext:
+        k = ord(char)
+        k = k ** int(key)
+        d = k % int(n)
+        cipher_text += f"{d}\n"
 
-def writeFile(file_path, content):
-    f = open(file_path, 'w')
-    return f.write(content)
-
-
-def cipher(public_key, plaintext):
-    pass
+    return cipher_text
 
 
 def main():
     print("#===== Cifragem RSA =====#")
+
+    plain_text_path = "./textos/texto-claro.txt"
+    plain_text = readFile(plain_text_path)
+    cipher_text = cipher(plain_text)
+    writeFile("./textos/texto-cifrado.txt", cipher_text)
 
 
 main()
