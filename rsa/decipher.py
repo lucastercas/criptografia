@@ -105,11 +105,14 @@ def main():
 
             writeFile("./public-key.txt", public_key)
             writeFile("./private-key.txt", private_key)
+            print(f"Chave pública escrita em public-key.txt")
+            print(f"Chave privada escrita em private-key.txt")
             break
         elif(option == "2"):
-            cipher_text_path = "./textos/texto-cifrado.txt"
+            cipher_text_path = input("Caminho do texto cifrado: ")
             cipher_text = readFile(cipher_text_path)
             deciphered_text = decipher(cipher_text)
+            print(f"Texto decifrado escrito para ./textos/texto-decifrado.txt")
             writeFile("./textos/texto-decifrado.txt", deciphered_text)
             break
 

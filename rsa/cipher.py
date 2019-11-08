@@ -23,9 +23,10 @@ def cipher(plaintext):
 def main():
     print("#===== Cifragem RSA =====#")
 
-    plain_text_path = "./textos/texto-claro.txt"
+    plain_text_path = input("Caminho do texto claro: ")
     plain_text = readFile(plain_text_path)
     cipher_text = cipher(plain_text)
+    print(f"Texto cifrado escrito para ./textos/texto-cifrado.txt")
     writeFile("./textos/texto-cifrado.txt", cipher_text)
 
 
