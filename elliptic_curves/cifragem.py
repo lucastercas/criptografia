@@ -58,16 +58,36 @@ def calculateSums(k, sums, decompositions, p, d):
     calculateSums(aux, sums, decompositions, p, d)
 
 
-def defineQ(curve):
-    pass
+def calculateMultiplication(k, q, p, d):
+    # Calcular chave publica R = (K * Q)
+    sums = {}  # Dicionario com as somas de q (multiplos de 2)
+    sums[1] = q
+    decompositions = []  # Vetor com Q decomposto em multiplos de 2
+    calculateSums(k, sums, decompositions, p, d)
+
+    r = sums[decompositions[0]]
+    for i in range(1, len(decompositions)):
+        r = sumPoints(r, sums[decompositions[i]], p, d)
+    return r
 
 
-def getPoints(plain_text):
-    pass
+def calculatePm(x, d, e):
+    # y^2 = x^3 + dx + e
+    # pm = y
+    return math.sqrt(pow(x, e) + d * x + e)
 
 
-def cipher(pm):
-    pass
+def cipher(plain_text, k, r, d, e):
+    cms = []
+    for letter in plain_text:
+        ascii = ord(letter)
+        pm = calculatePm(ascii, d, e)
+        c1 = r
+        kr = calculateMultiplication()
+        c2 = pm + k * r
+        cm = (c1, c2)
+        cms.append(cm)
+    return cms
 
 
 def main():
@@ -81,25 +101,16 @@ def main():
     writeFile("./curve.txt", f"{q[0]}\n{q[1]}")
 
     # Escolher aleatoriamente K(chave privada)
-    Ka = random.randint(0, 50)
+    k = random.randint(0, 50)
     # Salvar a chave privada em um arquivo
-    writeFile("keys/a_private_key.txt", f"{Ka}")
+    writeFile("keys/a_private_key.txt", f"{k}")
 
-    # Calcular chave publica Ra (Ka * Q)
-    sums = {} # Dicionario com as somas de q (multiplos de 2)
-    sums[1] = q
-    decompositions = [] # Vetor com Q decomposto em multiplos de 2
-    calculateSums(Ka, sums, decompositions, p, d)
-    
-    public_key = sums[decompositions[0]]
-    for i in range(1, len(decompositions)):
-        public_key = sumPoints(public_key, sums[decompositions[i]], p, d)
+    r = calculateMultiplication(k, q, p, d)
     # Salvar a chave publica em um arquivo
-    writeFile("keys/a_public_key.txt", f"{public_key[0]}\n{public_key[1]}")
+    writeFile("keys/a_public_key.txt", f"{r[0]}\n{r[1]}")
 
-
-    # plain_text = readFile("./textos/texto-claro.txt")
-    # pm = getPoints(plain_text)
+    plain_text = readFile("./textos/texto-claro.txt")
+    cm = cipher(plain_text, k, r, d, e)
 
     # cipher_text = cipher(pm)
     # writeFile("./textos/texto-cifrado.txt", cipher_text)
