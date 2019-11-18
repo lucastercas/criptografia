@@ -26,8 +26,9 @@ def transposition(matrix, key):
         copy_key = copy.copy(sorted_key)
 
         for char in key:
-            key_index = copy_key.index(char) 
-            copy_key[key_index] = None # Invalidar o indice, caso tenha letras repetidas na chave
+            key_index = copy_key.index(char)
+            # Invalidar o indice, caso tenha letras repetidas na chave
+            copy_key[key_index] = None
             result += matrix[key_index][i]
 
     return result
