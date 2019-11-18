@@ -1,9 +1,11 @@
 def getRotorOutput(char, rotor, position):
     alphabet = "abcdefghijklmnopqrstuvwxyz"
+
     # Calcular a posição da letra no rotor
     rotor_idx = rotor.index(char)
+
     # Retornar essa posição no alfabeto
-    return alphabet[rotor_idx]
+    return alphabet[(rotor_idx-position) % 26]
 
 
 def decipher(cipher_text, rotors, rotors_positions):
@@ -20,6 +22,7 @@ def decipher(cipher_text, rotors, rotors_positions):
                 rotors[rotor_idx],
                 rotors_positions[rotor_idx],
             )
-
+            rotors_positions[rotor_idx] = (rotors_positions[rotor_idx]+1) % 26
         deciphered_text += rotor_input
+
     return deciphered_text
