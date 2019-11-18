@@ -3,8 +3,19 @@
 import random
 from utils import readFile, writeFile
 
+def sumPoints(p1, p2, p):
+  # p1 = (x1, y1) p2 = (x2, y2)
+  # R = p1 + p2
+  # xR = (λ^2 - x1 - x2) % p
+  # yR = (λ(x1 - xR) - x1) % p
+  pass
+
+def calculateLambda(p1, p2):
+  pass
 
 def calculateCurve(p, d, e):
+    # y^2 % p = (x^3 + dx + e) % p
+    # Descobrir X e Y
     pass
 
 
